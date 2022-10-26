@@ -7,25 +7,25 @@ const threeSum = (nums) => {
 
   for (let i = 0; i < nums.length; i++) {
     let remainderToZero = 0 - nums[i];
-    let leftPointer = i + 1;
-    let rightPointer = nums.length - 1;
+    let left = i + 1;
+    let right = nums.length - 1;
 
     // To eliminate duplicates due to remainderToZero
     if (i > 0 && nums[i] === nums[i - 1]) continue;
 
-    while (leftPointer < rightPointer) {
-      if (nums[leftPointer] + nums[rightPointer] === remainderToZero) {
-        res.push([nums[i], nums[leftPointer], nums[rightPointer]]);
-        leftPointer++; // could be rightPointer++ as well
+    while (left < right) {
+      if (nums[left] + nums[right] === remainderToZero) {
+        res.push([nums[i], nums[left], nums[right]]);
+        left++; // could be right++ as well
 
         // To eliminate duplicates due to duplicated pointer(chosen left above)
-        while (nums[leftPointer] === nums[leftPointer - 1]) {
-          leftPointer++;
+        while (nums[left] === nums[left - 1]) {
+          left++;
         }
-      } else if (nums[leftPointer] + nums[rightPointer] < remainderToZero) {
-        leftPointer++;
+      } else if (nums[left] + nums[right] < remainderToZero) {
+        left++;
       } else {
-        rightPointer--;
+        right--;
       }
     }
   }
