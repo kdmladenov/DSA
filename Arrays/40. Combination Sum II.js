@@ -1,6 +1,6 @@
-https://leetcode.com/problems/combination-sum-ii/
+// https://leetcode.com/problems/combination-sum-ii/
 
-https://www.youtube.com/watch?v=Atr_z-JrMSI
+// https://www.youtube.com/watch?v=Atr_z-JrMSI
 
 const combinationSum2 = (candidates, target) => {
   const result = [];
@@ -19,6 +19,7 @@ const combinationSum2 = (candidates, target) => {
     // dfs recursive case
     for (let j = i; j < candidates.length; j++) {
       if (i !== j && candidates[j] === candidates[j-1]) continue;
+      
       slate.push(candidates[j]);
       dfs(j + 1, candidates, target - candidates[j], slate);
       slate.pop();
