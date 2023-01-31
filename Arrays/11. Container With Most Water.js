@@ -2,19 +2,15 @@
 
 const maxArea = (arr) => {
   let maxArea = 0;
-  let startIndex = 0;
-  let endIndex = arr.length - 1;
+  let start = 0;
+  let end = arr.length - 1;
 
-  while (startIndex < endIndex) {
-    let currentArea = Math.min(arr[startIndex], arr[endIndex]) * (endIndex - startIndex);
+  while (start < end) {
+    let currentArea = Math.min(arr[start], arr[end]) * (end - start);
 
     maxArea = Math.max(currentArea, maxArea);
 
-    if (arr[startIndex] > arr[endIndex]) {
-      endIndex--;
-    } else {
-      startIndex++;
-    }
+    arr[start] > arr[end] ? end-- : start++;
   }
 
   return maxArea;

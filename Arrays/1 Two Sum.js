@@ -3,16 +3,10 @@
 const twoSum = (nums, target) => {
   const pastValues = {};
 
-  for (let index = 0; index < nums.length; index++) {
-    const remainder = target - nums[index];
-    const remainderIndex = pastValues[remainder];
+  for (let i = 0; i < nums.length; i++) {
+    const remainderIndex = pastValues[target - nums[i]];
 
-    if (remainderIndex !== undefined) {
-      return [remainderIndex, index];
-    } else {
-      pastValues[nums[index]] = index;
-    }
+    if (remainderIndex !== undefined) return [remainderIndex, i];
+    else pastValues[nums[i]] = i;
   }
 };
-
-// console.log(twoSum([2, 7, 11, 15], 9));
