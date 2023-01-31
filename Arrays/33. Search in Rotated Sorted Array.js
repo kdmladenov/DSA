@@ -7,18 +7,14 @@ const search = (nums, target) => {
   while (left <= right) {
     let mid = Math.floor((left + right) / 2);
 
-    let midVal = nums[mid];
-
-    if (midVal === target) return mid;
+    if (nums[mid] === target) return mid;
 
     // When dividing the rotated array into two halves, one must be sorted.
-    // Check if the left side is sorted
-    if (nums[left] <= midVal) {
-      nums[left] <= target && target <= midVal ? (right = mid - 1) : (left = mid + 1);
-    }
-    // Otherwise, the right side is sorted
-    else {
-      midVal <= target && target <= nums[right] ? (left = mid + 1) : (right = mid - 1);
+
+    if (nums[left] <= nums[mid]) {
+      nums[left] <= target && target <= nums[mid] ? (right = mid - 1) : (left = mid + 1); //left side is sorted
+    } else {
+      nums[mid] <= target && target <= nums[right] ? (left = mid + 1) : (right = mid - 1); //right side is sorted
     }
   }
 

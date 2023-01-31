@@ -1,26 +1,43 @@
 // https://leetcode.com/problems/merge-sorted-array/
 
-// https://www.youtube.com/watch?v=FhIhUy8bZww&t=479s
+// const merge = (nums1, m, nums2, n) => {
+//   let firstIndx = m - 1;
+//   let secondIndx = n - 1;
+//   let endIndx = m + n - 1;
 
-// nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
-//              f     i                       s
+//   while (secondIndx >= 0) {
+//     let fVal = nums1[firstIndx];
+//     let sVal = nums2[secondIndx];
+
+//     if (fVal > sVal) {
+//       nums1[endIndx] = fVal;
+//       endIndx--;
+//       firstIndx--;
+//     } else {
+//       nums1[endIndx] = sVal;
+//       endIndx--;
+//       secondIndx--;
+//     }
+//   }
+// };
+
 const merge = (nums1, m, nums2, n) => {
-  let first = m - 1;
-  let second = n - 1;
-  let i = m + n - 1;
+  let firstEnd = m - 1;
+  let secondEnd = n - 1;
+  let finalEnd = m + n - 1;
 
-  while (second >= 0) {
-    let fVal = nums1[first];
-    let sVal = nums2[second];
+  while (secondEnd >= 0) {
+    let firstEndVal = nums1[firstEnd];
+    let secondEndVal = nums2[secondEnd];
 
-    if (fVal > sVal) {
-      nums1[i] = fVal;
-      i--;
-      first--;
+    if(firstEndVal >= secondEndVal){
+      nums1[finalEnd] = firstEndVal;
+      firstEnd--;
+      finalEnd--;
     } else {
-      nums1[i] = sVal;
-      i--;
-      second--;
+      nums1[finalEnd] = secondEndVal;
+      secondEnd--;
+      finalEnd--;
     }
   }
 };
