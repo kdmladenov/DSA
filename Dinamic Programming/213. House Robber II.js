@@ -2,19 +2,15 @@
 
 const rob = (nums) => {
   const len = nums.length;
-  if (len === 0) return 0;
-  if (len === 1) return nums[0];
+  if (len < 2) return nums[0] || 0;
 
-  // robbing first house
-  const dp = [nums[0], Math.max(nums[0], nums[1])];
-
-  // robbing last house
-  const dp2 = [0, nums[1]];
+  const maxes1 = [nums[0], Math.max(nums[0], nums[1])]; // Arr of cumulative max sums - rob first, pass last house
+  const maxes2 = [0, nums[1]]; // Arr of cumulative max sums - rob last, pass first house
 
   for (let i = 2; i < len; i++) {
-    dp[i] = i === len - 1 ? dp[i - 1] : Math.max(dp[i - 1], dp[i - 2] + nums[i]);
-    dp2[i] = Math.max(dp2[i - 1], dp2[i - 2] + nums[i]);
+    maxes1[i] = Math.max(nums[i] + maxes1[i - 2], maxes1[i - 1]);
+    maxes2[i] = Math.max(nums[i] + maxes2[i - 2], maxes2[i - 1]);
   }
 
-  return Math.max(dp[len - 1], dp2[len - 1]);
+  return Math.max(maxes1[len - 2], maxes2[len - 1]); // maxes1 w/o last item
 };
