@@ -10,5 +10,3 @@ const rob = (nums) => {
   }
   return maxes.pop();
 };
-
-// console.log(rob([2, 7, 9, 3, 1, 3, 1]));
