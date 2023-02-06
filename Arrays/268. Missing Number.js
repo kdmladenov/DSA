@@ -4,4 +4,4 @@
 // - consecutive number - index + 1
 // - the actual number
 
-const missingNumber = (nums) => nums.reduce((acc, num, i) => (acc += i + 1 - num), 0);
+const missingNumber = (nums) => [...nums, 0].reduce((acc, num, i) => (acc += i - num), 0);

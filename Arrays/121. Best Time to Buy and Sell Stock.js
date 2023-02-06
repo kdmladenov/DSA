@@ -2,12 +2,12 @@
 
 const maxProfit = (prices) => {
   let maxProfit = 0;
-  let cheapestPrice = prices[0];
+  let minPrice = prices[0];
 
   for (let price of prices) {
-    if (cheapestPrice > price) cheapestPrice = price;
+    if (minPrice > price) minPrice = price;
 
-    maxProfit = Math.max(price - cheapestPrice, maxProfit);
+    maxProfit = Math.max(price - minPrice, maxProfit);
   }
 
   return maxProfit;

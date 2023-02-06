@@ -13,7 +13,6 @@ const findMin = (nums) => {
   while (left <= right) {
     let mid = Math.floor((left + right) / 2);
 
-    let leftVal = nums[left];
     let midVal = nums[mid];
     let leftMid = nums[mid - 1];
     let rightMid = nums[mid + 1];
@@ -23,6 +22,6 @@ const findMin = (nums) => {
     if (leftMid > midVal) return midVal;
 
     // eg [3,4, 5,1 ,2]
-    midVal > leftVal ? (left = mid + 1) : (right = mid - 1);
+    midVal > nums[left] ? (left = mid + 1) : (right = mid - 1);
   }
 };

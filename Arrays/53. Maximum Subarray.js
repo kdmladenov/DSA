@@ -11,4 +11,3 @@ const maxSubArray = (nums) => {
 
   return max;
 };
-

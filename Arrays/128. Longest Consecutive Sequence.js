@@ -12,11 +12,8 @@ const longestConsecutive = (nums) => {
     if (nums[i] - nums[i - 1] === 1) {
       currentConsecutive += 1;
       maxConsecutive = Math.max(maxConsecutive, currentConsecutive);
-    } else if (nums[i] - nums[i - 1] === 0) {
-      // continue;
-    } else {
-      currentConsecutive = 1;
-    }
+    } else if (nums[i] - nums[i - 1] === 0) continue;
+    else currentConsecutive = 1;
   }
 
   return maxConsecutive;
