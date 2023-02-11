@@ -1,23 +1,21 @@
 // https://leetcode.com/problems/top-k-frequent-elements/
 
 const topKFrequent = (nums, k) => {
-  const freqMap = new Map();
-  const bucket = [];
+  const map = {};
+  const temp = [];
   const result = [];
 
-  // fill the map
   for (let num of nums) {
-    freqMap.set(num, (freqMap.get(num) || 0) + 1);
+    map[num] = map[num] + 1 || 1;
   }
 
-  // fill the bucket of Sets() with index the frequency
-  for (let [num, freq] of freqMap) {
-    bucket[freq] = (bucket[freq] || new Set()).add(num);
+  for (let [num, freq] of Object.entries(map)) {
+    temp[freq] = (temp[freq] || new Set()).add(num); // fill the bucket of Sets() with index the frequency
   }
-  // loop backwards - highest frequency first 
-  for (let i = bucket.length - 1; i >= 0; i--) {
-    // ... In case larger frequency array
-    if (bucket[i]) result.push(...bucket[i]);
+
+  // loop backwards - highest frequency first
+  for (let i = temp.length - 1; i >= 0; i--) {
+    if (temp[i]) result.push(...temp[i]); // ... In case larger frequency array
     if (result.length === k) break;
   }
   return result;
