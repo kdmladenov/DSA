@@ -6,7 +6,7 @@ const threeSum = (nums) => {
 
   for (let i = 0; i < nums.length; i++) {
     let remainderToZero = 0 - nums[i];
-    let left = i + 1;
+    let left = i + 1; // Important left = i + 1;
     let right = nums.length - 1;
 
     if (i > 0 && nums[i] === nums[i - 1]) continue; // To eliminate duplicates due to remainderToZero

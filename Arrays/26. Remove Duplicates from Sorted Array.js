@@ -7,9 +7,9 @@ const removeDuplicates = (nums) => {
 
   for (let fast = 1; fast < nums.length; fast++) {
     if (nums[fast] !== nums[slow]) {
-      slow++;
-      nums[slow] = nums[fast]; // use the current array as a writing board - no need to remove
+      slow++; // Important to be on top
+      nums[slow] = nums[fast]; 
     }
   }
-  return slow + 1; // To compensate for the 0 index
+  return slow + 1; 
 };

@@ -3,17 +3,17 @@
 const isValidSudoku = (board) => {
   const map = {};
 
-  for (let rowIndex = 0; rowIndex < board.length; rowIndex++) {
-    for (let colIndex = 0; colIndex < board[0].length; colIndex++) {
-      const val = board[rowIndex][colIndex];
+  for (let r = 0; r < board.length; r++) {
+    for (let c = 0; c < board[0].length; c++) {
+      const val = board[r][c];
 
       if (val === '.') continue;
 
-      const boxIndex = 3 * Math.floor(rowIndex / 3) + Math.floor(colIndex / 3); //formula
+      const boxIndex = 3 * Math.floor(r / 3) + Math.floor(c / 3); //formula
 
-      const row = `row: ${rowIndex}: value: ${val}`;
-      const col = `col: ${colIndex}: value: ${val}`;
-      const box = `box: ${boxIndex}: value: ${val}`;
+      const row = `row: ${r} value: ${val}`;
+      const col = `col: ${c} value: ${val}`;
+      const box = `box: ${boxIndex} value: ${val}`;
 
       if (map[row] || map[col] || map[box]) return false;
 
