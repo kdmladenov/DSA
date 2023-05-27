@@ -1,8 +1,5 @@
 // https://leetcode.com/problems/longest-palindromic-substring/
 
-// Input: s = "babad"
-// Output: "bab"
-
 const longestPalindrome = (s) => {
   let palStartIndex = 0;
   let palLength = 1;
@@ -21,7 +18,7 @@ const longestPalindrome = (s) => {
 
   for (let i = 0; i < s.length; i++) {
     expandMiddle(i, i + 1);
-    expandMiddle(i - 1, i + 1);
+    expandMiddle(i, i);
   }
 
   return s.slice(palStartIndex, palStartIndex + palLength);

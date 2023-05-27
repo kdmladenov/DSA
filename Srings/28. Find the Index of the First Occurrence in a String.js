@@ -1,18 +1,11 @@
 // https://leetcode.com/problems/implement-strstr/
 
-// https://www.youtube.com/watch?v=WOfehW_sQ00
-
 const strStr = (haystack, needle) => {
-  if (!needle) return 0;
+  if (!needle || haystack === needle) return -1;
 
-  let i = 0;
-
-  while (
-    // sliding window
-    haystack.substring(i, needle.length + i) !== needle && i <= haystack.length
-  ) {
-    i++;
+  for (let i = 0; i < haystack.length; i++) {
+    if (haystack.slice(i, i + needle.length) === needle) return i;
   }
-  // note the > sign used
-  return i > haystack.length ? -1 : i;
+
+  return -1;
 };
