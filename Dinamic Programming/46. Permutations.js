@@ -5,7 +5,7 @@ const permute = (nums, temp = [], res = []) => {
 
   for (let i = 0; i < nums.length; i++) {
     permute(
-      nums.filter((_, index) => index !== i),
+      nums.filter(num => num !== nums[i]),
       [...temp, nums[i]],
       res
     );

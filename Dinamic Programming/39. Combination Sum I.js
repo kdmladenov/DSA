@@ -14,4 +14,3 @@ const combinationSum = (candidates, target) => {
   dfs(0, target, []);
   return result;
 };
-
