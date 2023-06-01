@@ -1,23 +1,19 @@
 // https://leetcode.com/problems/decode-ways/
 
-function numDecodings(s) {
-  if (s == null || s[0] === '0' || s.length === 0) return 0;
+const numDecodings = (s) => {
+  if (!s || s[0] === '0') return 0;
 
-  const dp = new Array(s.length + 1).fill(0);
+  const table = new Array(s.length + 1).fill(0);
 
-  dp[0] = dp[1] = 1;
+  table[0] = table[1] = 1;
 
-  for (let i = 2; i <= s.length; i++) {
-    const a = +(s.slice(i - 1, i)); // last one digit
+  for (let i = 2; i < s.length + 1; i++) {
+    const a = +s.slice(i - 1, i); // previous one digit
+    if (a >= 1 && a <= 9) table[i] += table[i - 1];
 
-    if (a >= 1 && a <= 9) dp[i] += dp[i - 1];
-
-    const b = +(s.slice(i - 2, i)); // last two digits
-
-    if (b >= 10 && b <= 26) dp[i] += dp[i - 2];
+    const b = +s.slice(i - 2, i); // previous two digits
+    if (b >= 10 && b <= 26) table[i] += table[i - 2];
   }
 
-  return dp[s.length];
-}
-
-console.log(numDecodings('112'));
+  return table.pop();
+};

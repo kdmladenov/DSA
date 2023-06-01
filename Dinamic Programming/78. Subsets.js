@@ -7,7 +7,7 @@ const subsets = (nums) => {
     res.push(arr);
 
     for (let i = index; i < nums.length; i++) {
-      dfs([...arr, nums[i]], i + 1);
+      dfs([...arr, nums[i]], i + 1); // i + 1
     }
   };
 
