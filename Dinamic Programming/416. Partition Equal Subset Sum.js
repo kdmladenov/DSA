@@ -11,8 +11,10 @@ const canPartition = (nums) => {
 
   for (let num of nums) {
     for (let i = target; i >= num; i--) {
-      dp[i] = Math.max(dp[i], dp[i - num] + num); // complement + num
+      dp[i] = Math.max(dp[i], dp[i - num] + num); // complement + num - to memorize
     }
   }
   return dp[target] === target;
 };
+
+// console.log(canPartition([1, 5, 11, 5]));

@@ -4,7 +4,7 @@ const findTargetSumWays = (nums, target) => {
   const memo = new Map();
 
   const dfs = (i, remain) => {
-    const key = `${i}#${remain}`;
+    const key = `${i}-${remain}`;
     
     if (i < 0) return remain === 0 ? 1 : 0;
     if (memo.has(key)) return memo.get(key);

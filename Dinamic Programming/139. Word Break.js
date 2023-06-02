@@ -1,25 +1,22 @@
 // https://leetcode.com/problems/word-break/
 
-// no video ~~ 99%
-
 const wordBreak = function (str, wordDict) {
-  const res = new Array(str.length + 1).fill(false);
-  res[0] = true;
+  const isWordEnd = new Array(str.length + 1).fill(false);
+  isWordEnd[0] = true;
 
-  for (let i = 1; i <= str.length; i++) {
+  for (let i = 1; i < str.length + 1; i++) {
     for (let word of wordDict) {
-      // search word from dict backwards
-      // word.length <= i : the index should be at lease the length of the word
-      // res[i - word.length] : the start of the word should be exactly the end of the previous
-      // str.slice(i - word.length, i) === word : the words should match
-      if (word.length <= i && res[i - word.length] && str.slice(i - word.length, i) === word) {
-        res[i] = true;
-        break;
+      if (isWordEnd[i - word.length] && str.slice(i - word.length, i) === word) {
+        isWordEnd[i] = true;
+        // break; // optimization
       }
     }
   }
 
-  return res[str.length];
+  return isWordEnd.pop();
 };
 
-// console.log(wordBreak('applepenapple', ['apple', 'pen']));
+// search word from dict backwards
+// word.length <= i : the index should be at least the length of the word
+// res[i - word.length] : the start of the word should be exactly the end of the previous
+// str.slice(i - word.length, i) === word : the words should match

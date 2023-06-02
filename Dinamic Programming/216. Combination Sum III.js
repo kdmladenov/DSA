@@ -3,16 +3,16 @@
 const combinationSum3 = (k, n) => {
   const result = [];
 
-  const dfs = (arr, sum, start) => {
-    if (arr.length > k || sum > n) return;
-    if (arr.length === k && sum === n) result.push([...arr]);
+  const dfs = (arr, remain, start) => {
+    if (arr.length > k || remain < 0) return;
+    if (arr.length === k && remain === 0) result.push([...arr]);
 
-    for (let i = start; i <= 9; i++) {
-      dfs([...arr, i], sum + i, i + 1);
+    for (let num = start; num <= 9; num++) {
+      dfs([...arr, num], remain - num, num + 1);
     }
   };
 
-  dfs([], 0, 1);
+  dfs([], n, 1);
 
   return result;
 };
