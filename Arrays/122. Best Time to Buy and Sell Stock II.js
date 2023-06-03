@@ -7,7 +7,7 @@ const maxProfit = (prices) => {
     let prev = prices[i - 1];
     let curr = prices[i];
 
-    if (curr > prev) profit += curr - prev;
+    profit += Math.max(0, curr - prev);
   }
 
   return profit;
