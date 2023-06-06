@@ -1,7 +1,7 @@
 // https://leetcode.com/problems/gas-station/
 
 const canCompleteCircuit = (gas, cost) => {
-  let start = 0;
+  let startI = 0;
   let tank = 0;
   let total = 0;
 
@@ -12,11 +12,12 @@ const canCompleteCircuit = (gas, cost) => {
 
     if (tank < 0) {
       tank = 0;
-      start = i + 1;
+      startI = i + 1;
     }
 
     total += consume;
   }
-  return total < 0 ? -1 : start; // total === 0 --> start
+  return total < 0 ? -1 : startI; // total === 0 --> start
 };
 
+console.log(canCompleteCircuit([1, 2, 3, 4, 5], [3, 4, 5, 1, 2]));

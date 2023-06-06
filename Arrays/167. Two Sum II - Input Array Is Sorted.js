@@ -1,14 +1,12 @@
 // https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
 
-// same as LC 1
 const twoSum = (nums, target) => {
-  const pastValues = {};
+  let left = 0;
+  let right = nums.length - 1;
 
-  for (let i = 0; i < nums.length; i++) {
-    const remainderIndex = pastValues[target - nums[i]];
+  while (right > left) {
+    if (nums[left] + nums[right] === target) return [left + 1, right + 1];
 
-    if (remainderIndex !== undefined)
-      return [remainderIndex + 1, i + 1]; // add 1 to indexes by definition
-    else pastValues[nums[i]] = i;
+    nums[left] + nums[right] > target ? right-- : left++;
   }
 };
