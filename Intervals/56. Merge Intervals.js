@@ -1,5 +1,5 @@
-// https://leetcode.com/problems/merge-intervals/
-// O(nlogn) time | O(n) space
+// https://leetcode.com/problems/merge-intervals // O(nlogn) time | O(n) space
+
 const merge = (intervals) => {
   if (intervals.length === 0) return intervals;
 
@@ -7,15 +7,12 @@ const merge = (intervals) => {
 
   const res = [intervals[0]];
 
-  for (let i = 0; i < intervals.length; i++) {
-    let currentInterval = intervals[i];
-    let previousInterval = res[res.length - 1];
+  for (let current of intervals) {
+    let previous = res[res.length - 1];
 
-    if (currentInterval[0] <= previousInterval[1]) {
-      previousInterval[1] = Math.max(currentInterval[1], previousInterval[1]);
-    } else {
-      res.push(currentInterval);
-    }
+    current[0] <= previous[1]
+      ? (previous[1] = Math.max(current[1], previous[1]))
+      : res.push(current);
   }
 
   return res;
