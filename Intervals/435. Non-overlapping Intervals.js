@@ -1,25 +1,20 @@
 // https://leetcode.com/problems/non-overlapping-intervals/
 
 const eraseOverlapIntervals = (intervals) => {
-  let removalCount = 0;
+  let removed = 0;
 
   intervals.sort((a, b) => a[0] - b[0]);
 
-  let end = intervals[0][1];
+  let prev = intervals[0];
 
-  // start from the second interval
-  for (let i = 1; i < intervals.length; i++) {
-    const interval = intervals[i];
-    const intervalStart = interval[0];
-    const intervalEnd = interval[1];
+  for (let curr of intervals.slice(1)) {
 
-    if (end > intervalStart) {
-      end = Math.min(end, intervalEnd);
-      removalCount++;
-    } else {
-      end = intervalEnd;
-    }
+    if (prev[1] > curr[0]) {
+      prev[1] = Math.min(prev[1], curr[1]);
+      removed++;
+    } else prev = curr;
+
   }
 
-  return removalCount;
+  return removed;
 };
