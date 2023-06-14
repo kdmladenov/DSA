@@ -1,22 +1,35 @@
 // https://leetcode.com/problems/reverse-linked-list/
 
-// use previous, current, next and reverse the link between current and previous while current is not null
-const reverseList = head => {
+const reverseList = (head) => {
   let previous = null;
-
   let current = head;
 
-  while(current){
+  // Change direction
+  while (current) {
     let temp = current.next;
-
-    // Change direction
     current.next = previous;
-
-    // Move previous and current up by 1
     previous = current;
     current = temp;
   }
 
-  // previous(head) <- current(null) we want previous to be the new head
   return previous;
 };
+
+// null ->  0 -> 1 -> 2 -> 3 -> 4 -> null
+// p        c    t
+
+// null <- 0 <- 1 <- 2 <- 3 <- 4 <- null
+//                             p     ct
+
+// Python
+// def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+//     prev = None
+//     curr = head
+
+//     while curr:
+//         temp = curr.next
+//         curr.next = prev
+//         prev = curr
+//         curr = temp
+
+//     return prev
