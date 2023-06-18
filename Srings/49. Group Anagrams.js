@@ -1,16 +1,12 @@
 // https://leetcode.com/problems/group-anagrams/
 
 const groupAnagrams = (strs) => {
-    const grouped = {};
+  let map = {};
 
-    for (let i = 0; i < strs.length; i++){
-      const word = strs[i];
-      const key = word.split('').sort().join();
+  for (let str of strs) {
+    let key = [...str].sort();
+    map[key] = map[key] ? [...map[key], str] : [str];
+  }
 
-      if(!grouped[key]) grouped[key] = [];
-
-      grouped[key].push(word)
-    }
-
-    return Object.values(grouped);
+  return Object.values(map);
 };

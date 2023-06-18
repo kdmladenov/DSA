@@ -1,22 +1,22 @@
-// https://leetcode.com/submissions/detail/529617662/
+// https://leetcode.com/problems/reverse-words-in-a-string/
 
 const reverseWords = (str) => {
-  let output = '';
-  let counter = 0;
+  let res = '';
+  let len = 0;
 
   for (let i = str.length - 1; i >= 0; i--) {
-    // if (str[i] === " ")  do nothing
     if (str[i] !== ' ') {
-      counter++; // start counting how many letters in that word
+      len++;
 
       if (
         str[i - 1] == ' ' || // when it encounter the "end of the word"
         i === 0 // or when the i-1 is out of range
       ) {
-        output += `${output.length === 0 ? '' : ' '}` + str.slice(i, i + counter); // add sliced string to the output
-        counter = 0;
+        res += `${res === '' ? '' : ' '}` + str.slice(i, i + len); // add sliced string to the output
+        len = 0;
       }
     }
   }
-  return output;
+  return res;
 };
+
