@@ -1,6 +1,15 @@
 // https://leetcode.com/problems/rotate-image/
 
-// https://www.youtube.com/watch?v=HehiIRa4geE
+// Important:  c = r in second for
+const rotate = (matrix) => {
+  for (let r = 0; r < matrix.length; r++) {
+    for (let c = r; c < matrix[0].length; c++) {
+      [matrix[r][c], matrix[c][r]] = [matrix[c][r], matrix[r][c]];
+    }
+  }
+  
+  for (let row of matrix) row.reverse();
+};
 
 `1)
 [
@@ -20,17 +29,3 @@
   [8, 5, 2],
   [9, 6, 3]
 ];`;
-
-const rotate = (matrix) => {
-  for (let r = 0; r < matrix.length; r++) {
-    // 2) to flip by diagonal start second loop by c = r;
-    for (let c = r; c < matrix[0].length; c++) {
-      // flip values in place
-      [matrix[r][c], matrix[c][r]] = [matrix[c][r], matrix[r][c]];
-    }
-  }
-  // 3) reverse new rows
-  for (let row of matrix) row.reverse();
-};
-
-// no need to return 
