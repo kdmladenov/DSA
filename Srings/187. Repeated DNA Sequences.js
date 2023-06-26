@@ -10,5 +10,7 @@ const findRepeatedDnaSequences = (s) => {
     seen.has(str) ? result.add(str) : seen.add(str);
   }
 
-  return Array.from(result);
+  return [...result];
 };
+
+// optimize for (let i = 0; i < s.length - 9; i++)

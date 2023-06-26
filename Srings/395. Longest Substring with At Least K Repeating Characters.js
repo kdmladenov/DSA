@@ -3,26 +3,26 @@
 const longestSubstring = (s, k) => {
   if (!s) return 0;
 
-  const map = new Map();
-  let countMap = new Map();
-  let stack = [];
+  const strMap = {};
+  let substrMap = {};
+  let substr = '';
   let max = 0;
 
-  for (const char of s) map.set(char, map.get(char) + 1 || 1);
+  for (const char of s) strMap[char] = strMap[char] + 1 || 1;
 
   for (const char of s) {
-    if (map.get(char) >= k) {
-      stack.push(char);
-      countMap.set(char, countMap.get(char) + 1 || 1);
-    } else {
-      for (const [key, val] of countMap) map.set(key, +map.get(key) - +val); // remove prvious elements we have used before moving to the next part
+    if (strMap[char] < k) {
+      for (let char in substrMap) strMap[char] = strMap[char] - substrMap[char]; // reduce overall with curr 
 
-      countMap = new Map();
-      max = Math.max(longestSubstring(stack.join(''), k), max);
-      stack = [];
+      max = Math.max(longestSubstring(substr, k), max); // !important 
+      substrMap = {};
+      substr = '';
+    } else {
+      substr += char;
+      substrMap[char] = substrMap[char] + 1 || 1;
     }
   }
-  max = Math.max(stack.length, max);
+  max = Math.max(substr.length, max);
 
   return max >= k ? max : 0;
 };
