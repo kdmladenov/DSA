@@ -2,46 +2,39 @@
 
 const exist = (board, word) => {
   let found = false;
-
   let rows = board.length;
   let cols = board[0].length;
 
-  // Running the DFS for every cell in the board
-  for (let c = 0; c < cols; c++) {
-    for (let r = 0; r < rows; r++) {
-      if (board[r][c] === word[0]) dfs(r, c, 0, word, rows, cols);
+  const dfs = (row, col, index) => {
+    if (index === word.length) found = true; // Important
+
+    if (
+      row < 0 ||
+      row >= rows ||
+      col < 0 ||
+      col >= cols ||
+      board[row][col] !== word[index] ||
+      found
+    ) {
+      return;
+    }
+
+    let temp = board[row][col];
+    board[row][col] = ''; // Important
+
+    dfs(row + 1, col, index + 1);
+    dfs(row - 1, col, index + 1);
+    dfs(row, col + 1, index + 1);
+    dfs(row, col - 1, index + 1);
+
+    board[row][col] = temp;
+  };
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      if (board[r][c] === word[0]) dfs(r, c, 0);
     }
   }
 
   return found;
 };
-
-// DFS helper fx();
-function dfs(row, col, count, word, rows, cols) {
-  if (count === word.length) {
-    found = true;
-    return;
-  }
-
-  // check if valid row and col, if the letter is the same and if not found already
-  if (
-    row < 0 ||
-    row >= rows ||
-    col < 0 ||
-    col >= cols ||
-    board[row][col] !== word[count] ||
-    found
-  ) {
-    return;
-  }
-
-  const temp = board[row][col];
-  board[row][col] = '';
-
-  dfs(row + 1, col, count + 1, word, rows, cols);
-  dfs(row - 1, col, count + 1, word, rows, cols);
-  dfs(row, col + 1, count + 1, word, rows, cols);
-  dfs(row, col - 1, count + 1, word, rows, cols);
-
-  board[row][col] = temp;
-}
